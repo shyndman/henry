@@ -51,5 +51,23 @@ dddd
 ''');
       print(parse);
     });
+
+    test('with comments', () {
+      final parse = trace(HenryParser()).parse('''
+foo // what?
+        @bar //what?
+    @baz foooo
+    @baz {
+aaaa
+bbbb
+ccccc @
+dddd
+      @attribute snaz
+      eeeeee
+    }
+
+''');
+      print(parse);
+    });
   });
 }
