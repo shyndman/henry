@@ -6,7 +6,7 @@ class HenryParser extends GrammarParser {
   HenryParser() : super(HenryParserDefinition());
 }
 
-class HenryParserDefinition extends MdmGrammarDefinition {
+class HenryParserDefinition extends HenryGrammarDefinition {
   @override
   Parser nodeList() {
     return super.nodeList().map((value) {

@@ -2,11 +2,7 @@ import 'package:petitparser/petitparser.dart';
 
 import 'debug.dart';
 
-class MdmGrammar extends GrammarParser {
-  MdmGrammar() : super(MdmGrammarDefinition());
-}
-
-class MdmGrammarDefinition extends GrammarDefinition {
+class HenryGrammarDefinition extends GrammarDefinition {
   @override
   Parser start() {
     return (nodeList() & endOfInput().trim()).pick(0);
