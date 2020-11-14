@@ -1,6 +1,6 @@
 name: hierarchical_entity_model_recursively_yielded
 description: Henry. My dog's name is Henry.
-version: 1.0.0
+version: 0.1.0
 
 environment:
   sdk: '>=2.7.0 <3.0.0'
