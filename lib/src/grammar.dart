@@ -17,30 +17,30 @@ class MdmGrammarDefinition extends GrammarDefinition {
   }
 
   Parser node() {
-    return (elementNode() | textNode()) & terminator();
+    return (entityNode() | textNode()) & terminator();
   }
 
-  Parser elementNode() {
+  Parser entityNode() {
     return (nonBreakingWhitespace() &
-            ELEMENT_MARK() &
+            ENTITY_MARK() &
             IDENTIFIER() &
-            (blockElementBody() | inlineElementBody()))
-        .label('Element node');
+            (blockEntityBody() | inlineEntityBody()))
+        .label('Entity node');
   }
 
-  Parser inlineElementBody() {
+  Parser inlineEntityBody() {
     return (nonBreakingWhitespace() & pattern('^{\n').star())
-        .label('Inline element body');
+        .label('Inline entity body');
   }
 
-  Parser blockElementBody() {
+  Parser blockEntityBody() {
     return (nonBreakingWhitespace() &
             char('{') &
             NEWLINE() &
             ref(nodeList) &
             nonBreakingWhitespace() &
             char('}'))
-        .label('Block element body');
+        .label('Block entity body');
   }
 
   Parser textNode() {
@@ -74,7 +74,7 @@ class MdmGrammarDefinition extends GrammarDefinition {
   Parser IDENTIFIER() => ref(token, pattern('a-zA-Z0-9\-_').plus().flatten());
   Parser NON_BREAKING_WHITESPACE() => pattern(' \t');
   Parser NEWLINE() => ref(token, '\n');
-  Parser ELEMENT_MARK() => ref(token, '@');
+  Parser ENTITY_MARK() => ref(token, '@');
   Parser OPEN_BLOCK() => ref(token, '{');
   Parser CLOSE_BLOCK() => ref(token, '}');
 }

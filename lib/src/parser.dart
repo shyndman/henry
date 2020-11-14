@@ -15,26 +15,26 @@ class HenryParserDefinition extends MdmGrammarDefinition {
   }
 
   @override
-  Parser elementNode() {
-    return super.elementNode().map((value) {
+  Parser entityNode() {
+    return super.entityNode().map((value) {
       final name = (value[2] as Token).value;
       final children = value[3];
-      return ElementNode(
+      return EntityNode(
           name, (children as Iterable).whereType<Node>().toList());
     });
   }
 
   @override
-  Parser inlineElementBody() {
-    return super.inlineElementBody().flatten().map((value) {
+  Parser inlineEntityBody() {
+    return super.inlineEntityBody().flatten().map((value) {
       final trimmedValue = value.trimLeft();
       return trimmedValue.isNotEmpty ? [TextNode(trimmedValue)] : [];
     });
   }
 
   @override
-  Parser blockElementBody() {
-    return super.blockElementBody().map((value) {
+  Parser blockEntityBody() {
+    return super.blockEntityBody().map((value) {
       return value[3];
     });
   }
@@ -56,13 +56,13 @@ class HenryParserDefinition extends MdmGrammarDefinition {
   }
 }
 
-class ElementNode extends Node {
-  ElementNode(this.name, this.children);
+class EntityNode extends Node {
+  EntityNode(this.name, this.children);
   final String name;
   final List<Node> children;
 
   @override
-  String toString() => 'element($name, $children)';
+  String toString() => 'entity($name, $children)';
 }
 
 class TextNode extends Node {

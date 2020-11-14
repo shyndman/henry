@@ -12,7 +12,7 @@ void main() {
       print(trace(HenryParser()).parse(henryContents).value);
     });
 
-    test('Nested elements', () {
+    test('Nested entitys', () {
       final mdm = '''
 
 
